@@ -1,21 +1,51 @@
 from historico_navegador import HistoricoNavegador
 
-historico = HistoricoNavegador()
+def abrir_nova_pagina(historico):
+    nova_pagina = input("Digite o URL da nova página: ")
+    if nova_pagina:
+        historico.adicionar_pagina(nova_pagina)
+        print(f"Nova página aberta: {nova_pagina}")
 
-historico.adicionar_pagina("www.exemplo.com/pagina1")
-historico.adicionar_pagina("www.exemplo.com/pagina2")
-historico.adicionar_pagina("www.exemplo.com/pagina3")
-historico.adicionar_pagina("www.exemplo.com/pagina4")
+def voltar_pagina(historico):
+    historico.voltar_pagina()
 
+def avancar_pagina(historico):
+    pagina_seguinte = historico.avancar_pagina()
+    if pagina_seguinte:
+        print(f"Avançando para: {pagina_seguinte}")
 
-historico.visualizar_historico()
+def visualizar_historico(historico):
+    historico.visualizar_historico()
 
-print("Página atual:", historico.pagina_atual())
+def sair(historico):
+    print("Saindo do simulador de navegador.")
+    exit()
 
-historico.voltar_pagina()
-print("Página após voltar:", historico.pagina_atual())
+def exibir_menu():
+    print("\nMenu:")
+    print("1. Abrir Nova Página")
+    print("2. Voltar Página")
+    print("3. Avançar Página")
+    print("4. Visualizar Histórico")
+    print("0. Sair")
 
-historico.avancar_pagina()
-print("Página após avançar:", historico.pagina_atual())
+def main():
+    historico = HistoricoNavegador()
 
-historico.visualizar_historico()
+    opcoes = {
+        1: abrir_nova_pagina,
+        2: voltar_pagina,
+        3: avancar_pagina,
+        4: visualizar_historico,
+        0: sair,
+    }
+
+    while True:
+        exibir_menu()
+        escolha = int(input("Escolha uma opção: "))
+
+        funcao = opcoes.get(escolha, lambda: print("Opção inválida."))
+        funcao(historico)
+
+if __name__ == "__main__":
+    main()
