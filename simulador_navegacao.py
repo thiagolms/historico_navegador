@@ -10,9 +10,8 @@ def voltar_pagina(historico):
     historico.voltar_pagina()
 
 def avancar_pagina(historico):
-    pagina_seguinte = historico.avancar_pagina()
-    if pagina_seguinte:
-        print(f"Avançando para: {pagina_seguinte}")
+    historico.avancar_pagina()
+   
 
 def visualizar_historico(historico):
     historico.visualizar_historico()
